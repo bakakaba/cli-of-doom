@@ -277,10 +277,38 @@ fn _structs() {
         }
     }
 
+    // We can split the implementation to multiple blocks
+    impl Rectangle {
+        fn can_hold(&self, other: &Rectangle) -> bool {
+            self.width > other.width && self.height > other.height
+        }
+
+        fn square(size: u32) -> Rectangle {
+            Rectangle {
+                width: size,
+                height: size,
+            }
+        }
+    }
+
     println!(
         "The area of the rectangle is {} square pixels.",
         rect1.area()
     );
+
+    let rect2 = Rectangle {
+        width: 10,
+        height: 40,
+    };
+    let rect3 = Rectangle {
+        width: 60,
+        height: 45,
+    };
+
+    println!("Can rect1 hold rect2? {}", rect1.can_hold(&rect2));
+    println!("Can rect1 hold rect3? {}", rect1.can_hold(&rect3));
+
+    let _square1 = Rectangle::square(50);
 }
 
 fn main() {
@@ -316,5 +344,5 @@ fn main() {
 
     // _slice();
 
-    _structs();
+    // _structs();
 }
