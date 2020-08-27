@@ -373,6 +373,11 @@ fn _enums() {
     }
 
     value_in_cents(Coin::Penny);
+
+    let some_u8_value = Some(3);
+    if let Some(3) = some_u8_value {
+        println!("three");
+    }
 }
 
 fn main() {
