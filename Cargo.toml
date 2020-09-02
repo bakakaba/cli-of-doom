@@ -8,6 +8,8 @@ default-run = "cli-of-doom"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-rand = "0.7.3"
-serde = "1.0.111"
-serde_json = "1.0.53"
+clap = "*"
+rand = "*"
+serde = "*"
+serde_json = "*"
+colored = "*"

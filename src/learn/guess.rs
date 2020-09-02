@@ -1,8 +1,11 @@
+use colored::*;
 use rand::Rng;
 use std::cmp::Ordering;
 use std::io;
 
-pub fn _high_and_low(numbers: &str) -> String {
+pub fn high_and_low(numbers: &str) -> String {
+    println!("Numbers: {}", numbers);
+
     use std::cmp;
     let f = |(max, min), x| (cmp::max(max, x), cmp::min(min, x));
 
@@ -10,10 +13,17 @@ pub fn _high_and_low(numbers: &str) -> String {
         .split_whitespace()
         .map(|x| x.parse::<i32>().unwrap())
         .fold((i32::min_value(), i32::max_value()), f);
-    format!("{} {}", answer.0, answer.1)
+    format!("Low: {}, High: {}", answer.0, answer.1)
 }
 
-pub fn _guess_number() {
+pub fn high_and_low_example() {
+    println!("\n{}", "Guess".green().bold());
+
+    let result = high_and_low("10 20 40 50 75");
+    println!("{}", result);
+}
+
+pub fn guess_number() {
     println!("Guess the number!");
     let secret_number = rand::thread_rng().gen_range(1, 101);
     // println!("The secret number is: {}", secret_number);
