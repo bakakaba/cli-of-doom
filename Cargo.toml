@@ -9,7 +9,8 @@ default-run = "cli-of-doom"
 
 [dependencies]
 clap = "*"
+colored = "*"
+dotenv = "*"
 rand = "*"
 serde = "*"
 serde_json = "*"
-colored = "*"
