@@ -22,21 +22,23 @@ mod structs;
 mod variables;
 #[allow(dead_code)]
 mod vectors;
+#[allow(dead_code)]
+mod errors;
 
 pub fn run() {
     // guess::guess_number();
-    // panic!("crash and burn");
 
-    guess::high_and_low_example();
-    variables::variables();
-    data_types::data_types();
-    control::control();
-    ownership::ownership();
-    references::references();
-    slice::slice();
-    structs::structs();
-    enums::enums();
-    vectors::vectors();
-    strings::strings();
-    hashmap::hashmap();
+    // guess::high_and_low_example();
+    // variables::variables();
+    // data_types::data_types();
+    // control::control();
+    // ownership::ownership();
+    // references::references();
+    // slice::slice();
+    // structs::structs();
+    // enums::enums();
+    // vectors::vectors();
+    // strings::strings();
+    // hashmap::hashmap();
+    errors::errors();
 }
