@@ -24,6 +24,8 @@ mod variables;
 mod vectors;
 #[allow(dead_code)]
 mod errors;
+#[allow(dead_code)]
+mod generics;
 
 pub fn run() {
     // guess::guess_number();
@@ -40,5 +42,6 @@ pub fn run() {
     // vectors::vectors();
     // strings::strings();
     // hashmap::hashmap();
-    errors::errors();
+    // errors::errors();
+    generics::generics();
 }
