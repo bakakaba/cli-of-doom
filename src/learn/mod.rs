@@ -5,6 +5,10 @@ mod data_types;
 #[allow(dead_code)]
 mod enums;
 #[allow(dead_code)]
+mod errors;
+#[allow(dead_code)]
+mod generics;
+#[allow(dead_code)]
 mod guess;
 #[allow(dead_code)]
 mod hashmap;
@@ -19,13 +23,11 @@ mod strings;
 #[allow(dead_code)]
 mod structs;
 #[allow(dead_code)]
+mod traits;
+#[allow(dead_code)]
 mod variables;
 #[allow(dead_code)]
 mod vectors;
-#[allow(dead_code)]
-mod errors;
-#[allow(dead_code)]
-mod generics;
 
 pub fn run() {
     // guess::guess_number();
@@ -43,5 +45,6 @@ pub fn run() {
     // strings::strings();
     // hashmap::hashmap();
     // errors::errors();
-    generics::generics();
+    // generics::generics();
+    traits::traits();
 }
