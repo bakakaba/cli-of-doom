@@ -45,6 +45,7 @@ fn it_adds_two() {
 }
 
 #[test]
+#[ignore]
 fn greeting_contains_name() {
     let result = greeting("Carol");
     assert!(

@@ -1,6 +1,5 @@
 use dotenv::dotenv;
-
-mod learn;
+use cli_of_doom::learn;
 
 fn main() {
     dotenv().ok();

@@ -31,7 +31,7 @@ mod variables;
 #[allow(dead_code)]
 mod vectors;
 #[allow(dead_code)]
-mod testing;
+pub mod testing;
 
 pub fn run() {
     // guess::guess_number();
