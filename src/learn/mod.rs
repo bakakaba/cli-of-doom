@@ -13,6 +13,8 @@ mod guess;
 #[allow(dead_code)]
 mod hashmap;
 #[allow(dead_code)]
+mod lifetimes;
+#[allow(dead_code)]
 mod ownership;
 #[allow(dead_code)]
 mod references;
@@ -46,5 +48,6 @@ pub fn run() {
     // hashmap::hashmap();
     // errors::errors();
     // generics::generics();
-    traits::traits();
+    // traits::traits();
+    lifetimes::lifetimes();
 }
