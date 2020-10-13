@@ -1,5 +1,5 @@
-use std::fmt::Display;
 use colored::Colorize;
+use std::fmt::Display;
 
 fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
     if x.len() > y.len() {
@@ -14,11 +14,7 @@ struct ImportantExcerpt<'a> {
     part: &'a str,
 }
 
-fn longest_with_an_announcement<'a, T>(
-    x: &'a str,
-    y: &'a str,
-    ann: T,
-) -> &'a str
+fn longest_with_an_announcement<'a, T>(x: &'a str, y: &'a str, ann: T) -> &'a str
 where
     T: Display,
 {
