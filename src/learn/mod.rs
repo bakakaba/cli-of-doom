@@ -30,6 +30,8 @@ mod traits;
 mod variables;
 #[allow(dead_code)]
 mod vectors;
+#[allow(dead_code)]
+mod testing;
 
 pub fn run() {
     // guess::guess_number();
@@ -49,5 +51,6 @@ pub fn run() {
     // errors::errors();
     // generics::generics();
     // traits::traits();
-    lifetimes::lifetimes();
+    // lifetimes::lifetimes();
+    testing::testing();
 }
