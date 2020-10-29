@@ -1,4 +1,8 @@
-use std::{env, fs, process};
+use std::{error::Error, env, fs, process};
+
+#[cfg(test)]
+#[path = "./mod.tests.rs"]
+mod tests;
 
 struct SearchArgs {
     query: String,
@@ -6,8 +10,8 @@ struct SearchArgs {
 }
 
 impl SearchArgs {
-    fn new() -> Result<SearchArgs, &'static str> {
-        let args: Vec<String> = env::args().collect();
+    fn new(args: &[String]) -> Result<SearchArgs, &'static str> {
+
         if args.len() < 3 {
             return Err("Not enough arguments!");
         }
@@ -18,8 +22,32 @@ impl SearchArgs {
     }
 }
 
+fn read_file(args: SearchArgs) -> Result<(), Box<dyn Error>> {
+    let contents = fs::read_to_string(args.filename)?;
+
+    for line in search(&args.query, &contents) {
+        println!("{}", line);
+    }
+
+    Ok(())
+}
+
+pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
+    let mut results = Vec::new();
+
+    for line in contents.lines() {
+        if line.contains(query) {
+            results.push(line);
+        }
+    }
+
+    results
+}
+
 pub fn run() {
-    let args = SearchArgs::new().unwrap_or_else(|err| {
+    let args_list: Vec<String> = env::args().collect();
+
+    let args = SearchArgs::new(&args_list).unwrap_or_else(|err| {
         println!("Problem parsing arguments: {}", err);
         process::exit(1);
     });
@@ -27,7 +55,9 @@ pub fn run() {
     println!("Searching for {}", args.query);
     println!("In file {}", args.filename);
 
-    let contents =
-        fs::read_to_string(args.filename).expect("Something went wrong reading the file");
-    println!("With text:\n{}", contents);
+    if let Err(err) = read_file(args) {
+        println!("Application error: {}", err);
+
+        process::exit(1);
+    }
 }
