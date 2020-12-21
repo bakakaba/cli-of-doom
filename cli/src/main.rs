@@ -2,7 +2,7 @@
 use cli_of_doom::learn;
 use dotenv::dotenv;
 
-mod grep;
+// mod grep;
 
 fn main() {
     dotenv().ok();

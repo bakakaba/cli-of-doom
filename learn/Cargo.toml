@@ -1,0 +1,4 @@
+[dependencies]
+colored = "*"
+rand = "*"
+serde_json = "*"

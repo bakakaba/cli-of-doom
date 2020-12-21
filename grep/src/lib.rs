@@ -1,7 +1,7 @@
 use std::{env, error::Error, fs, process};
 
 #[cfg(test)]
-#[path = "./mod.tests.rs"]
+#[path = "./lib.tests.rs"]
 mod tests;
 
 struct SearchArgs {
