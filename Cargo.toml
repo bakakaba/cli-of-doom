@@ -1,9 +1,2 @@
-[package]
-name = "cli-of-doom"
-version = "0.1.0"
-authors = ["Lee Lian Hoy <cruz@zyk3.net>"]
-edition = "2018"
-# default-run = "cli"
-
 [workspace]
-members = ["packages/*", "cli"]
+members = ["packages/*"]

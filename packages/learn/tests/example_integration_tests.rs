@@ -1,4 +1,4 @@
-use cli_of_doom::learn::testing;
+use learn::learn::testing;
 mod common;
 
 #[test]

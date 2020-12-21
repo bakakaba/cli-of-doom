@@ -1,7 +1,5 @@
 [package]
 name = "grep"
-version = "0.1.0"
+version = "0.0.0"
 authors = ["Lee Lian Hoy <cruz@zyk3.net>"]
 edition = "2018"
-
-[dependencies]

@@ -10,6 +10,7 @@ where
     T: Fn(u32) -> u32,
 {
     calculation: T,
+    #[allow(dead_code)]
     value: Option<u32>,
     values: HashMap<u32, u32>,
 }
@@ -38,7 +39,7 @@ where
     }
 }
 
-fn simulated_expensive_calculation(intensity: u32) -> u32 {
+fn _simulated_expensive_calculation(intensity: u32) -> u32 {
     println!("calculating slowly...");
     thread::sleep(Duration::from_secs(2));
     intensity
@@ -97,6 +98,7 @@ struct Shoe {
     style: String,
 }
 
+#[allow(dead_code)]
 fn shoes_in_my_size(shoes: Vec<Shoe>, shoe_size: u32) -> Vec<Shoe> {
     shoes.into_iter().filter(|s| s.size == shoe_size).collect()
 }
@@ -139,4 +141,7 @@ pub fn iterators() {
     let v1: Vec<i32> = vec![1, 2, 3];
     let v2: Vec<_> = v1.iter().map(|x| x + 1).collect();
     assert_eq!(v2, vec![2, 3, 4]);
+
+    let mut counter = Counter::new();
+    counter.next();
 }

@@ -35,5 +35,7 @@ pub fn generics() {
     println!("The largest char is {}", result);
 
     let _integer = Point { x: 5, y: 10 };
-    let _float = Point { x: 1.0, y: 4.0 };
+    let float = Point { x: 1.0, y: 4.0 };
+
+    println!("The distance is {}", float.distance_from_origin());
 }

@@ -14,7 +14,7 @@ struct ImportantExcerpt<'a> {
     part: &'a str,
 }
 
-fn longest_with_an_announcement<'a, T>(x: &'a str, y: &'a str, ann: T) -> &'a str
+fn _longest_with_an_announcement<'a, T>(x: &'a str, y: &'a str, ann: T) -> &'a str
 where
     T: Display,
 {

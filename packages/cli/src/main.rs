@@ -1,5 +1,5 @@
 #[allow(unused_imports)]
-use cli_of_doom::learn;
+use learn::learn;
 use dotenv::dotenv;
 
 // mod grep;
