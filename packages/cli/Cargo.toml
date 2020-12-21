@@ -5,8 +5,10 @@ name = "cli-of-doom"
 version = "0.1.0"
 
 [dependencies]
-clap = "*"
+clap = {version = "3.0.0-beta.2", features = ["yaml"]}
 colored = "*"
 dotenv = "*"
 grep = {path = "../grep"}
 learn = {path = "../learn"}
+serde = "*"
+serde_json = "*"

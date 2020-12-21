@@ -1,0 +1,24 @@
+name: cli-of-doom
+version: "0.1"
+author: Lee Lian Hoy <cruz@zyk3.net>
+about: You know what the name spells!
+args:
+  - config:
+      short: c
+      long: config
+      value_name: FILE
+      about: Sets a custom config file
+      takes_value: true
+  - verbose:
+      short: v
+      multiple: true
+      about: Sets the level of verbosity
+subcommands:
+  - learn:
+    about: Run rust examples
+  - test:
+      about: controls testing features
+      args:
+        - debug:
+            short: d
+            about: print debug information
