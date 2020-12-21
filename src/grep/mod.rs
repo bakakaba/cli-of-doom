@@ -1,4 +1,4 @@
-use std::{error::Error, env, fs, process};
+use std::{env, error::Error, fs, process};
 
 #[cfg(test)]
 #[path = "./mod.tests.rs"]
@@ -12,7 +12,6 @@ struct SearchArgs {
 
 impl SearchArgs {
     fn new(args: &[String]) -> Result<SearchArgs, &'static str> {
-
         if args.len() < 3 {
             return Err("Not enough arguments!");
         }
@@ -20,7 +19,11 @@ impl SearchArgs {
         let filename = args[2].clone();
         let case_sensitive = env::var("CASE_INSENSITIVE").is_err();
 
-        Ok(SearchArgs { query, filename, case_sensitive })
+        Ok(SearchArgs {
+            query,
+            filename,
+            case_sensitive,
+        })
     }
 }
 
@@ -40,10 +43,7 @@ fn read_file(args: SearchArgs) -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
-pub fn search_case_insensitive<'a>(
-    query: &str,
-    contents: &'a str,
-) -> Vec<&'a str> {
+pub fn search_case_insensitive<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
     let query = query.to_lowercase();
     let mut results = Vec::new();
 
@@ -57,17 +57,13 @@ pub fn search_case_insensitive<'a>(
 }
 
 pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
-    let mut results = Vec::new();
-
-    for line in contents.lines() {
-        if line.contains(query) {
-            results.push(line);
-        }
-    }
-
-    results
+    contents
+        .lines()
+        .filter(|line| line.contains(query))
+        .collect()
 }
 
+#[allow(dead_code)]
 pub fn run() {
     let args_list: Vec<String> = env::args().collect();
 

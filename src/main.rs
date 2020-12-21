@@ -7,6 +7,6 @@ mod grep;
 fn main() {
     dotenv().ok();
 
-    grep::run();
-    // learn::run();
+    learn::run();
+    // grep::run();
 }
