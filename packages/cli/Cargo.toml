@@ -10,6 +10,3 @@ colored = "*"
 dotenv = "*"
 grep = {path = "../grep"}
 learn = {path = "../learn"}
-rand = "*"
-serde = "*"
-serde_json = "*"

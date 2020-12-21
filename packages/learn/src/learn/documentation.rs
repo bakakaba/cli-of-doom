@@ -4,7 +4,7 @@
 ///
 /// ```
 /// let arg = 5;
-/// let answer = cli_of_doom::learn::documentation::add_one(arg);
+/// let answer = learn::learn::documentation::add_one(arg);
 ///
 /// assert_eq!(6, answer);
 /// ```
