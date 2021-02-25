@@ -16,6 +16,8 @@ args:
 subcommands:
   - learn:
     about: Run rust examples
+  - ls:
+    about: List files
   - test:
       about: controls testing features
       args:
