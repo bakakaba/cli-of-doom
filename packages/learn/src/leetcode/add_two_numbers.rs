@@ -51,7 +51,7 @@ fn add_two_numbers(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> Opti
     let mut i1 = l1;
     let mut i2 = l2;
     let mut carry = 0;
-    let mut head = Some(Box::new(ListNode::new(0)));;
+    let mut head = Some(Box::new(ListNode::new(0)));
     let mut curr = head.as_mut();
 
     while i1 != None || i2 != None {
@@ -100,5 +100,4 @@ fn it_add_two_numbers() {
 
     let result = add_two_numbers(Some(n1), Some(n2));
     println!("{:?} + {:?} = {}", l1, l2, result.unwrap());
-    // assert_eq!(4, add_two(2));
 }
