@@ -5,11 +5,7 @@ pub fn num_pairs_divisible_by60(time: Vec<i32>) -> i32 {
 
     for t in time {
         let r = t % 60;
-        if r == 0 {
-            count += remainders[0];
-        } else {
-            count += remainders[(60 - r) as usize];
-        }
+        count += remainders[((60 - r) % 60) as usize];
         remainders[r as usize] += 1;
     }
 
