@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 #[derive(Debug)]
 struct MyCircularQueue {
     items: Vec<i32>,
