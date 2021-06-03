@@ -8,7 +8,7 @@ pub fn my_atoi(s: String) -> i32 {
     for c in s.chars() {
         if c == '-' || c == '+' {
             if symbol_added || number_started {
-                return 0;
+                break;
             }
             symbol_added = true;
             num.push(c);
@@ -16,7 +16,7 @@ pub fn my_atoi(s: String) -> i32 {
         }
 
         if c == ' ' {
-            if number_started {
+            if number_started || symbol_added {
                 break;
             }
             continue;
@@ -69,4 +69,8 @@ fn it_should_run_correctly() {
     assert_eq!(0, r8);
     let r9 = my_atoi("   +0 123".to_string());
     assert_eq!(0, r9);
+    let r10 = my_atoi("-5-".to_string());
+    assert_eq!(-5, r10);
+    let r11 = my_atoi("  +  413".to_string());
+    assert_eq!(0, r11);
 }
