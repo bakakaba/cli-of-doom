@@ -14,7 +14,7 @@ pub fn count_and_say(n: i32) -> String {
             count += 1;
         } else {
             if count > 0 {
-                let mut s =count.to_string();
+                let mut s = count.to_string();
                 s.push(prev);
                 out += &s;
             }

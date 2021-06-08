@@ -2,6 +2,7 @@ mod add_two_numbers;
 mod count_and_say;
 mod design_circular_queue;
 mod divide_two_integers;
+mod longest_palindromic_substring;
 mod longest_substring_without_repeating_characters;
 mod matchsticks_to_square;
 mod minesweeper;
