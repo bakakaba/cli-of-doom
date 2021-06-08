@@ -8,3 +8,4 @@ mod matchsticks_to_square;
 mod minesweeper;
 mod num_pairs_divisible_by60;
 mod string_to_integer_atoi;
+mod zigzag_conversion;
