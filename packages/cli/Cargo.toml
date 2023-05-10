@@ -1,16 +1,16 @@
 [package]
 authors = ["Lee Lian Hoy <cruz@zyk3.net>"]
 description = "You know what the name spells!"
-edition = "2018"
+edition = "2021"
 homepage = "https://github.com/cruz82/cli-of-doom"
 name = "cli-of-doom"
 version = "0.1.0"
 
 [dependencies]
-clap = {version = "3.0.0-beta.4"}
+clap = { version = "*", features = ["derive"] }
 colored = "*"
 dotenv = "*"
-grep = {path = "../grep"}
-learn = {path = "../learn"}
+grep = { path = "../grep" }
+learn = { path = "../learn" }
 serde = "*"
 serde_json = "*"

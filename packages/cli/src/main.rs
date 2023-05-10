@@ -1,70 +1,86 @@
-use std::io::Error;
+use std::path::PathBuf;
 
-use clap::{App, Arg};
-use cli_of_doom::fs::dirs;
+use clap::{Parser, Subcommand};
 use dotenv::dotenv;
+
+use cli_of_doom::fs::dirs;
 use learn::learn;
 
-fn create_app() -> App<'static> {
-    let name = env!("CARGO_PKG_NAME");
-    let version = env!("CARGO_PKG_VERSION");
-    let authors = env!("CARGO_PKG_AUTHORS");
-    let description = env!("CARGO_PKG_DESCRIPTION");
+#[derive(Parser)]
+#[command(author, version, about, long_about = None)]
+#[command(arg_required_else_help(true))]
+struct Cli {
+    /// Optional name to operate on
+    name: Option<String>,
 
-    let app = App::new(name)
-        .version(version)
-        .author(authors)
-        .about(description)
-        .arg(
-            Arg::new("configuration")
-                .about("Sets a custom configuration file")
-                .short('c')
-                .long("cfg")
-                .value_name("FILE")
-                .takes_value(true),
-        )
-        .arg(
-            Arg::new("verbosity")
-                .about("Sets the level of verbosity")
-                .short('v')
-                .multiple_occurrences(true)
-                .takes_value(true),
-        );
+    /// Sets a custom config file
+    #[arg(short, long, value_name = "FILE")]
+    config: Option<PathBuf>,
 
-    app
+    /// Turn debugging information on
+    #[arg(short, long, action = clap::ArgAction::Count)]
+    verbose: u8,
+
+    #[command(subcommand)]
+    command: Option<Commands>,
 }
 
-fn add_cmd_learn(app: App) -> App {
-    app.subcommand(App::new("learn").about("Run rust examples."))
-}
+#[derive(Subcommand)]
+enum Commands {
+    /// Run learning examples
+    Learn {},
 
-fn add_cmd_ls(app: App) -> App {
-    app.subcommand(App::new("ls").about("List files."))
-}
+    /// Rudimentary list files
+    Ls {},
 
-fn run_command(mut app: App) -> Result<(), Error> {
-    let matches = app.clone().get_matches();
-    println!("{:?}", matches);
-    match matches.subcommand_name() {
-        Some("learn") => {
-            learn::run();
-        }
-        Some("ls") => {
-            dirs::list_files();
-        }
-        _ => {
-            app.print_long_help()?;
-        }
-    }
-
-    Ok(())
+    /// Example subcommand with options
+    Test {
+        /// lists test values
+        #[arg(short, long)]
+        list: bool,
+    },
 }
 
 fn main() {
     dotenv().ok();
 
-    let mut app = create_app();
-    app = add_cmd_learn(app);
-    app = add_cmd_ls(app);
-    run_command(app).unwrap();
+    let cli = Cli::parse();
+
+    if let Some(name) = cli.name.as_deref() {
+        println!("Value for name: {name}");
+    }
+
+    if let Some(config_path) = cli.config.as_deref() {
+        println!("Value for config: {}", config_path.display());
+    }
+
+    match cli.verbose {
+        0 => (),
+        1 => println!("Verbose mode"),
+        2 => println!("Extra verbose"),
+        _ => println!("Don't be crazy verbose"),
+    }
+
+    match &cli.command {
+        Some(Commands::Test { list }) => {
+            if *list {
+                println!("Printing testing lists...");
+            } else {
+                println!("Not printing testing lists...");
+            }
+        }
+        Some(Commands::Learn {}) => {
+            learn::run();
+        }
+        Some(Commands::Ls {}) => {
+            dirs::list_files();
+        }
+        None => (),
+    }
+}
+
+#[test]
+fn verify_cli() {
+    use clap::CommandFactory;
+    Cli::command().debug_assert()
 }

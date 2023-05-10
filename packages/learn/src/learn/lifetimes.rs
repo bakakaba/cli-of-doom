@@ -11,6 +11,7 @@ fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
 
 #[derive(Debug)]
 struct ImportantExcerpt<'a> {
+    #[allow(dead_code)]
     part: &'a str,
 }
 
