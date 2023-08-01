@@ -4,6 +4,7 @@ use clap::{Parser, Subcommand};
 use dotenv::dotenv;
 
 use cli_of_doom::fs::dirs;
+use cli_of_doom::env::variables;
 use learn::learn;
 
 #[derive(Parser)]
@@ -39,6 +40,9 @@ enum Commands {
         #[arg(short, long)]
         list: bool,
     },
+
+    /// Print environment configuration
+    Env {},
 }
 
 fn main() {
@@ -74,6 +78,9 @@ fn main() {
         }
         Some(Commands::Ls {}) => {
             dirs::list_files();
+        }
+        Some(Commands::Env {}) => {
+            variables::list_variables();
         }
         None => (),
     }
