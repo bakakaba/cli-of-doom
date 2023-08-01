@@ -1,16 +1,15 @@
 use std::path::PathBuf;
 
-use clap::{Parser, Subcommand};
+use clap::Parser;
 use dotenv::dotenv;
 
-use cli_of_doom::fs::dirs;
-use cli_of_doom::env::variables;
-use learn::learn;
+mod commands;
+use commands::{run_command, Commands};
 
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
 #[command(arg_required_else_help(true))]
-struct Cli {
+pub struct Cli {
     /// Optional name to operate on
     name: Option<String>,
 
@@ -24,25 +23,6 @@ struct Cli {
 
     #[command(subcommand)]
     command: Option<Commands>,
-}
-
-#[derive(Subcommand)]
-enum Commands {
-    /// Run learning examples
-    Learn {},
-
-    /// Rudimentary list files
-    Ls {},
-
-    /// Example subcommand with options
-    Test {
-        /// lists test values
-        #[arg(short, long)]
-        list: bool,
-    },
-
-    /// Print environment configuration
-    Env {},
 }
 
 fn main() {
@@ -65,25 +45,7 @@ fn main() {
         _ => println!("Don't be crazy verbose"),
     }
 
-    match &cli.command {
-        Some(Commands::Test { list }) => {
-            if *list {
-                println!("Printing testing lists...");
-            } else {
-                println!("Not printing testing lists...");
-            }
-        }
-        Some(Commands::Learn {}) => {
-            learn::run();
-        }
-        Some(Commands::Ls {}) => {
-            dirs::list_files();
-        }
-        Some(Commands::Env {}) => {
-            variables::list_variables();
-        }
-        None => (),
-    }
+    run_command(cli.command);
 }
 
 #[test]
