@@ -63,7 +63,6 @@ pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
         .collect()
 }
 
-#[allow(dead_code)]
 pub fn run() {
     let args_list: Vec<String> = env::args().collect();
 

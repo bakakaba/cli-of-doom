@@ -1,7 +1,8 @@
-use clap::{Args, Subcommand};
+use clap::Subcommand;
 use learn::learn;
 
-use cli_of_doom::{fs, env};
+use cli_of_doom::{env, fs};
+use zenu::commands::{run_zenu_command, ZenuArgs};
 
 #[derive(Subcommand)]
 pub enum Commands {
@@ -25,21 +26,7 @@ pub enum Commands {
     Zenu(ZenuArgs),
 }
 
-#[derive(Debug, Args)]
-#[command(args_conflicts_with_subcommands = true)]
-pub struct ZenuArgs {
-    // Taken from https://github.com/clap-rs/clap/blob/master/examples/git-derive.rs
-    #[command(subcommand)]
-    commands: ZenuCommands,
-}
-
-#[derive(Debug, Subcommand)]
-enum ZenuCommands {
-    Test,
-}
-
-
-pub fn run_command(command: Option<Commands>) {
+pub async fn run_command(command: Option<Commands>) {
     match command {
         Some(Commands::Test { list }) => {
             if list {
@@ -57,12 +44,8 @@ pub fn run_command(command: Option<Commands>) {
         Some(Commands::Env {}) => {
             env::variables::list_variables();
         }
-        Some(Commands::Zenu(zenu_args)) => {
-            match zenu_args.commands {
-                ZenuCommands::Test => {
-                    println!("Zenu test command");
-                }
-            }
+        Some(Commands::Zenu(args)) => {
+            run_zenu_command(args).await;
         }
         None => (),
     }

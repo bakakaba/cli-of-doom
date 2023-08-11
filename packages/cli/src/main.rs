@@ -25,7 +25,8 @@ pub struct Cli {
     command: Option<Commands>,
 }
 
-fn main() {
+#[tokio::main]
+async fn main() {
     dotenv().ok();
 
     let cli = Cli::parse();
@@ -45,7 +46,7 @@ fn main() {
         _ => println!("Don't be crazy verbose"),
     }
 
-    run_command(cli.command);
+    run_command(cli.command).await;
 }
 
 #[test]

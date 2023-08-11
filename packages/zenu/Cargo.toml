@@ -3,3 +3,7 @@ name = "zenu"
 version = "0.0.0"
 authors = ["Lee Lian Hoy <cruz@zyk3.net>"]
 edition = "2021"
+
+[dependencies]
+clap = { version = "*", features = ["derive"] }
+mongodb = "*"
