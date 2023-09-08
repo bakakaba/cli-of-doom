@@ -6,4 +6,6 @@ edition = "2021"
 
 [dependencies]
 clap = { version = "*", features = ["derive"] }
+futures = "*"
 mongodb = "*"
+serde_json = "*"
