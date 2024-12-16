@@ -1,7 +1,6 @@
 use clap::{Args, Subcommand};
 
-use crate::mongo_client::list_databases;
-use crate::mongo_client::truncate_outbound_requests_results;
+use crate::mongo_client::{list_databases, truncate_outbound_requests_results};
 
 #[derive(Debug, Args)]
 #[command(args_conflicts_with_subcommands = true)]
